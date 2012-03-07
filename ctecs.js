@@ -1,6 +1,6 @@
 //search function//last.fm metros are static. Instead ofloading new metros every time, just load with the script.
 var courses = [
-{"id":0, "name": "metaphysical dragon compilers",
+{"id":0, "name": "Metaphysical Dragon Compilers",
 "department": "EECS", "number": "841", "professor": "Robby Findler",
     "scores": {"amount learned": 6, "difficulty": 6, "time spent": 6},
     "comments":[
@@ -12,7 +12,7 @@ var courses = [
                  "score": -2}
                 ]},
     
-{"id":1, "name": "metaphysical dragon compilers", "department": "EECS", "number": "841", "professor": "Tom Jones",
+{"id":1, "name": "Metaphysical Dragon Compilers", "department": "EECS", "number": "841", "professor": "Tom Jones",
     "scores": {"amount learned": 2, "difficulty": 1, "time spent": 3},
     "comments":[
                 {"text": "It's unusual, but I learned nothing",
@@ -23,7 +23,7 @@ var courses = [
                  "score": -2}
                 ]},
     
-{"id":2, "name": "left-handed underwater basket-weaving", "department": "UWBW", "number": "385", "professor": "Morton Shapiro",
+{"id":2, "name": "Left-Handed Underwater Basket-Weaving", "department": "UWBW", "number": "385", "professor": "Morton Shapiro",
     "scores": {"amount learned": 5, "difficulty": 6, "time spent": 4},
     "comments":[
                 {"text": "Easier than UWBW 391.",
@@ -34,7 +34,7 @@ var courses = [
                  "score": 22}
                 ]},
     
-{"id":3, "name": "seminar in 1970's music", "department": "COMP_LIT", "number": "348", "professor": "Tom Jones",
+{"id":3, "name": "Seminar in 1970's Music", "department": "COMP_LIT", "number": "348", "professor": "Tom Jones",
     "scores": {"amount learned": 3, "difficulty": 4, "time spent": 4},
     "comments":[
                 {"text": "BURNING DOWN THE HOUSE!!!",
@@ -56,16 +56,42 @@ function detectEnter(e){
 function search() {
 	$('#results').empty();
 	var query = $('#query_box').val().toLowerCase();
-    for (var i=0; i<courses.length; i++){
-        if (courses[i]["name"].indexOf(query) >= 0) {
-            $('#results').append(badgeHtml(courses[i]));
-        }
+    var results = searchCourses(query);
+    for (var i=0; i<results.length; i++){
+        $('#results').append(badgeHtml(results[i]));
     }
     $('div.badge').click(function(){makeCard($(this));});
 }
 
+
+function searchCourses(query){
+    var results=[];
+    for (i in courses) {
+        c = courses[i];
+        if (c["name"].toLowerCase().indexOf(query) >= 0) {
+            results.push(c);
+            continue;
+        }
+        if (c["professor"].toLowerCase().indexOf(query) >= 0) {
+            results.push(c);
+            continue;
+        }
+        if ((c["department"] + " " + c["number"]).toLowerCase().indexOf(query) >= 0) {
+            results.push(c);
+            continue;
+        }
+    }
+    return results;
+}
+
+
+
+
+
+
+
 function badgeHtml(course){
-    return "<div id="+course['id']+" class='badge'><ul><li>"+course['department']+" - "+ course['number'] +"</li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
+    return "<div id="+course['id']+" class='badge'><ul><li>"+course['department']+" "+ course['number'] +"</li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
     /*what this would look like if javascript had block quotes instead of being a bitch.	
 	
 	
