@@ -57,11 +57,11 @@ function search() {
 	$('#results').empty();
 	var query = $('#query_box').val().toLowerCase();
     console.log(query);
-	for (var i=0; i<courses.length; i++){
-            if (courses[i]["name"] == query){
-		$('#results').append(courseHtml(courses[i]));
-            };
-        }
+    for (var i=0; i<courses.length; i++){
+        if (courses[i]["name"].indexOf(query) >= 0) {
+            $('#results').append(courseHtml(courses[i]));
+        };
+    }
 }
 
 function courseHtml(course){
