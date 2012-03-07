@@ -89,7 +89,6 @@ function courseHtml(course){
 		});
 	</script>
 	*/
-};
 
 function incfComment(course, index){
 	course["comments"][index]["score"]++;
