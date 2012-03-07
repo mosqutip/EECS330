@@ -31,14 +31,30 @@
         
       }
       
+      .card {        
+        color: #ffffff;
+        border: 1px solid #BBB;
+        border-radius: 5px;
+        background: #520063;        
+        padding: 1em;
+        width: 200px;
+        height: 600px;      
+      }
+      
       .span9 {
-        <!--'my life for Aiur'-->
         height: 85%; 
       }
       
       .hero-unit {
-        <!--'my life for Aiur'-->
         height: 475px;
+      }
+      
+      div#cards {
+        float: right;
+      }
+      
+      div#query {
+        float: left;
       }
     </style>
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -103,7 +119,7 @@
       <div class="row-fluid">
         <div class="span3">
           <!-- Search Bar / Results Bar -->          
-          <div class="well sidebar-nav">
+          <div id="query" class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class= "nav-header">search:</li>
               <input id="query_box" type="text" onkeypress="detectEnter(event)"></input>
@@ -116,9 +132,9 @@
           </div><!--/.well -->
         </div><!--/span-->
         
-        <div class="span9">
-          <div class="hero-unit">
-          </div><!--/row-->
+
+          <table id="cards" class="container-fluid">
+          </table>
         </div><!--/span-->
       </div><!--/row-->
 

@@ -1,7 +1,7 @@
 //search function//last.fm metros are static. Instead ofloading new metros every time, just load with the script.
 var courses = [
 {"id":0, "name": "metaphysical dragon compilers",
-"department": "eecs", "number": "841", "professor": "Robby Findler",
+"department": "EECS", "number": "841", "professor": "Robby Findler",
     "scores": {"amount learned": 6, "difficulty": 6, "time spent": 6},
     "comments":[
                 {"text": "Everyone else got a fruit roll-up.  Why didn't I get a fruit roll-up?",
@@ -12,7 +12,7 @@ var courses = [
                  "score": -2}
                 ]},
     
-{"id":1, "name": "metaphysical dragon compilers", "department": "eecs", "number": "841", "professor": "Tom Jones",
+{"id":1, "name": "metaphysical dragon compilers", "department": "EECS", "number": "841", "professor": "Tom Jones",
     "scores": {"amount learned": 2, "difficulty": 1, "time spent": 3},
     "comments":[
                 {"text": "It's unusual, but I learned nothing",
@@ -53,34 +53,20 @@ function detectEnter(e){
         }
 }
 
-//basic search function for query box search
 function search() {
 	$('#results').empty();
 	var query = $('#query_box').val().toLowerCase();
     for (var i=0; i<courses.length; i++){
         if (courses[i]["name"].indexOf(query) >= 0) {
-            $('#results').append(courseHtml(courses[i]));
+            $('#results').append(badgeHtml(courses[i]));
         }
     }
     $('div.badge').click(function(){makeCard($(this));});
 }
 
-function courseHtml(course){
-	return "<div id="+course['id']+ " class='badge'> <h3><a href='#'>" + course['department'] + "  " + course['number'] + "<br/>" + course['name'] + "<br/>" + course['professor'] +"</a></h3><div><ul><li> professor: "+course['professor']+"</li></ul></div></div><br/>"
-}
-
-function makeCard(badge){
-    var course;
-    for (var i in courses){
-        var c = courses[i];       
-        if (c['id']==badge[0].id){
-            course=c;
-        }        
-    }
-    console.log(course);
-}
-
-/*what this would look like if javascript had block quotes instead of being a bitch.	
+function badgeHtml(course){
+    return "<div id="+course['id']+" class='badge'><ul><li>"+course['department']+" - "+ course['number'] +"</li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
+    /*what this would look like if javascript had block quotes instead of being a bitch.	
 	<h3><a href="#"> +COURSE NAME+ +COURSE DEPARTMENT+ "-" +COURSE NUMBER+ <input type="button" onclick="displaySlate('+course+')'+'"><img src="button file.jpg"></input></a></h3>
 	<div>
 		<ul>
@@ -101,7 +87,52 @@ function makeCard(badge){
 		});
 	</script>
 	*/
+}
 
+
+function cardHtml(course){
+    return "<td valign='left'><div id="+course['id']+" class='card'><ul><li>"+course['department']+" - "+ course['number'] +"</li><li>"+course['name']+"+</li><li>"+ course['professor']+"+</li>"+makeBars(course)+"</ul></div></td>";
+
+/*Template for a course card:
+ 
+<script type='text/javascript'>
+		$(function() {
+			$( '#amount learned' ).progressbar({
+			value: (16 * +COURSE AMOUNT LEARNED+)});
+			$( '#difficulty' ).progressbar({
+			value: (16 * +COURSE DIFFICULTY+)});
+			$( '#time spent' ).progressbar({
+			value: (16 * +COURSE TIME SPENT+)});			
+		});
+	</script> 
+*/    
+}
+
+function makeBars(course){
+    
+}
+
+function commentSection(course){
+    
+    
+}
+
+function makeCard(badge){
+    var course;
+    for (var i in courses){
+        var c = courses[i];       
+        if (c['id']==badge[0].id){
+            //this is the course we want
+            course=c;
+            //delete the badge
+            $(badge).remove();
+            //render the card
+            console.log(course);
+            $("#cards").append(cardHtml(course));
+        }
+    }
+    //assemble the html code for the course card
+}
 
 function incfComment(course, index){
 	course["comments"][index]["score"]++;
