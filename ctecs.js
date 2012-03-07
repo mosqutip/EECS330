@@ -89,11 +89,10 @@ function cardHtml(course){
             " class='card'><ul class='course_header'><li>"+
             course['department']+" - "+ course['number'] +"</li><li>"+
             course['name']+"</li><li>"+ course['professor']+"</li></ul>"+
-            "<div>amount learned:<br/><div class='amount_learned_bar' id='amount_learned_bar"+course['id']+"'></div></div>"+
-            "<div>difficulty:<br/><div class='difficulty_bar' id='difficulty_bar"+course['id']+"'></div></div>"+
-            "<div>time spent:<br/><div class='time_spent_bar' id='time_spent_bar"+course['id']+"'></div></div>"+
-            makeBars(course)+"</div><br/>"+commentSection(course)+"</td>";
-
+            "<div>amount learned:<div class='amount_learned_bar' id='amount_learned_bar"+course['id']+"'></div></div>"+
+            "<div>difficulty:<div class='difficulty_bar' id='difficulty_bar"+course['id']+"'></div></div>"+
+            "<div>time spent:<div class='time_spent_bar' id='time_spent_bar"+course['id']+"'></div></div>"+
+            makeBars(course)+"<br/>"+commentSection(course)+"</div></td>";
 }
 
 function makeBars(course){
@@ -113,8 +112,13 @@ function makeBars(course){
 }
 
 function commentSection(course){
-    
-    return"";
+    var block = "<div class=comments><table>";
+    for (var i in course['comments']){
+        addend = "<tr valgin='top'><td>"+course['comments'][i]['score']+"</td><td>"+course['comments'][i]['text']+"<td></tr>";
+        block += addend;
+    }
+    block += "</table></div>";
+    return block;
 }
 
 function makeCard(badge){
