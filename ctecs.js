@@ -67,6 +67,8 @@ function search() {
 function badgeHtml(course){
     return "<div id="+course['id']+" class='badge'><ul><li>"+course['department']+" - "+ course['number'] +"</li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
     /*what this would look like if javascript had block quotes instead of being a bitch.	
+	
+	
 	<h3><a href="#"> +COURSE NAME+ +COURSE DEPARTMENT+ "-" +COURSE NUMBER+ <input type="button" onclick="displaySlate('+course+')'+'"><img src="button file.jpg"></input></a></h3>
 	<div>
 		<ul>
@@ -76,45 +78,43 @@ function badgeHtml(course){
 			<li>Time: <div id='time spent'></div></li>
 		</ul>
 	</div>
-	<script type='text/javascript'>
-		$(function() {
-			$( '#amount learned' ).progressbar({
-			value: (16 * +COURSE AMOUNT LEARNED+)});
-			$( '#difficulty' ).progressbar({
-			value: (16 * +COURSE DIFFICULTY+)});
-			$( '#time spent' ).progressbar({
-			value: (16 * +COURSE TIME SPENT+)});			
-		});
-	</script>
-	*/
+*/
 }
 
 
 function cardHtml(course){
-    return "<td valign='left'><div id="+course['id']+" class='card'><ul><li>"+course['department']+" - "+ course['number'] +"</li><li>"+course['name']+"+</li><li>"+ course['professor']+"+</li>"+makeBars(course)+"</ul></div></td>";
+    console.log(makeBars(course));
+    return "<td valign='left'><div id="+
+            course['id']+
+            " class='card'><ul class='course_header'><li>"+
+            course['department']+" - "+ course['number'] +"</li><li>"+
+            course['name']+"</li><li>"+ course['professor']+"</li></ul>"+
+            "<div>amount learned:<br/><div class='amount_learned_bar' id='amount_learned_bar"+course['id']+"'></div></div>"+
+            "<div>difficulty:<br/><div class='difficulty_bar' id='difficulty_bar"+course['id']+"'></div></div>"+
+            "<div>time spent:<br/><div class='time_spent_bar' id='time_spent_bar"+course['id']+"'></div></div>"+
+            makeBars(course)+"</div><br/>"+commentSection(course)+"</td>";
 
-/*Template for a course card:
- 
-<script type='text/javascript'>
-		$(function() {
-			$( '#amount learned' ).progressbar({
-			value: (16 * +COURSE AMOUNT LEARNED+)});
-			$( '#difficulty' ).progressbar({
-			value: (16 * +COURSE DIFFICULTY+)});
-			$( '#time spent' ).progressbar({
-			value: (16 * +COURSE TIME SPENT+)});			
-		});
-	</script> 
-*/    
 }
 
 function makeBars(course){
-    
+/*		return	"<script type='text/javascript'>$( '.amount_learned_bar#"+course['id']+"').progressbar({value: "+
+        (16 * course['scores']['amount learned'])+ "});" +
+		"$( '.time_spent_bar#"+course['id']+"').progressbar({value: "+
+        (16 * course['scores']['time spent'])+ "});" +
+        "$( '.difficulty_bar#"+course['id']+"').progressbar({value: "+
+        (16 * course['scores']['difficulty'])+ "});</script>";
+ */
+		return	"<script type='text/javascript'>$( '#amount_learned_bar"+course['id']+"').progressbar({value: "+
+        (16 * course['scores']['amount learned'])+ "});" +
+		"$( '#time_spent_bar"+course['id']+"').progressbar({value: "+
+        (16 * course['scores']['time spent'])+ "});" +
+        "$( '#difficulty_bar"+course['id']+"').progressbar({value: "+
+        (16 * course['scores']['difficulty'])+ "});</script>";
 }
 
 function commentSection(course){
     
-    
+    return"";
 }
 
 function makeCard(badge){
