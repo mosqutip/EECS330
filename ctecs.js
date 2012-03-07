@@ -65,8 +65,8 @@ function search() {
 }
 
 function courseHtml(course){
-//courses have: name, department, number, professor, scores(3), comments(n)	
-	return "<h3><a href='#'>" + course['name'] + "</a></h3><div><ul><li> professor: "+course['professor']+"</li>"+"<li>Learned: <div id='amount learned'></div></li><li>Difficulty: <div id='difficulty'></div></li><li>Time: <div id='time spent'></div></li></ul></div><script type='text/javascript'>$(function() {$( '#amount learned' ).progressbar({value: (16 * "+course['scores']['amount learned']+")});$( '#difficulty' ).progressbar({value: (16 * "+course['scores']['difficulty']+")});$( '#time spent' ).progressbar({value: (16 * "+course['scores']['time spent']+")});});</script>"
+	return "<h3><a href='#'>" + course['department'] + "  " + course['number'] + "<br/>" + course['name'] + "<br/>" + course['professor'] +"</a></h3><div><ul><li> professor: "+course['professor']+"</li><li>Learned: <div id='amount learned'></div></li><li>Difficulty: <div id='difficulty'></div></li><li>Time: <div id='time spent'></div></li></ul></div>"
+}
 
 /*what this would look like if javascript had block quotes instead of being a bitch.	
 	<h3><a href="#"> +COURSE NAME+ +COURSE DEPARTMENT+ "-" +COURSE NUMBER+ <input type="button" onclick="displaySlate('+course+')'+'"><img src="button file.jpg"></input></a></h3>
