@@ -17,6 +17,29 @@
       .sidebar-nav {
         padding: 9px 0;
       }
+      
+      .badge {        
+        color: #ffffff;
+        border: 1px solid #BBB;
+        border-radius: 5px;
+        background: #520063;        
+        padding: 1em
+      }
+      
+      .badge a {
+        color: #ffffff        
+        
+      }
+      
+      .span9 {
+        <!--'my life for Aiur'-->
+        height: 85%; 
+      }
+      
+      .hero-unit {
+        <!--'my life for Aiur'-->
+        height: 475px;
+      }
     </style>
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -85,13 +108,16 @@
               <li class= "nav-header">search:</li>
               <input id="query_box" type="text" onkeypress="detectEnter(event)"></input>
               <li class="nav-header">results</li>
-              <div id="results"></div>
+              <div id="results"></div>     
+                <script>
+                  $( "#results" ).accordion ({collapsible:true, fillSpace:true});
+                </script>            
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+        
         <div class="span9">
-          <!--This is too short/small right now, but once the JQuery UI stuff is in, I think it will be a non-issue-->
-          <div class="hero-unit" style=>
+          <div class="hero-unit">
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->

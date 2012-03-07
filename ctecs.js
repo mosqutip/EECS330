@@ -1,6 +1,6 @@
 //search function//last.fm metros are static. Instead ofloading new metros every time, just load with the script.
 var courses = [
-{"name": "metaphysical dragon compilers",
+{"id":0, "name": "metaphysical dragon compilers",
 "department": "eecs", "number": "841", "professor": "Robby Findler",
     "scores": {"amount learned": 6, "difficulty": 6, "time spent": 6},
     "comments":[
@@ -12,7 +12,7 @@ var courses = [
                  "score": -2}
                 ]},
     
-{"name": "metaphysical dragon compilers", "department": "eecs", "number": "841", "professor": "Tom Jones",
+{"id":1, "name": "metaphysical dragon compilers", "department": "eecs", "number": "841", "professor": "Tom Jones",
     "scores": {"amount learned": 2, "difficulty": 1, "time spent": 3},
     "comments":[
                 {"text": "It's unusual, but I learned nothing",
@@ -23,7 +23,7 @@ var courses = [
                  "score": -2}
                 ]},
     
-{"name": "left-handed underwater basket-weaving", "department": "UWBW", "number": "385", "professor": "Morton Shapiro",
+{"id":2, "name": "left-handed underwater basket-weaving", "department": "UWBW", "number": "385", "professor": "Morton Shapiro",
     "scores": {"amount learned": 5, "difficulty": 6, "time spent": 4},
     "comments":[
                 {"text": "Easier than UWBW 391.",
@@ -34,7 +34,7 @@ var courses = [
                  "score": 22}
                 ]},
     
-{"name": "seminar in 1970's music", "department": "COMP_LIT", "number": "348", "professor": "Tom Jones",
+{"id":3, "name": "seminar in 1970's music", "department": "COMP_LIT", "number": "348", "professor": "Tom Jones",
     "scores": {"amount learned": 3, "difficulty": 4, "time spent": 4},
     "comments":[
                 {"text": "BURNING DOWN THE HOUSE!!!",
@@ -49,6 +49,7 @@ var courses = [
 function detectEnter(e){
 	if (e.keyCode == 13) {
 		search();
+		$("#results").accordion ({collapsible:true, fillSpace:true});
         }
 }
 
@@ -59,12 +60,24 @@ function search() {
     for (var i=0; i<courses.length; i++){
         if (courses[i]["name"].indexOf(query) >= 0) {
             $('#results').append(courseHtml(courses[i]));
-        };
+        }
     }
+    $('div.badge').click(function(){makeCard($(this));});
 }
 
 function courseHtml(course){
-	return "<h3><a href='#'>" + course['department'] + "  " + course['number'] + "<br/>" + course['name'] + "<br/>" + course['professor'] +"</a></h3><div><ul><li> professor: "+course['professor']+"</li><li>Learned: <div id='amount learned'></div></li><li>Difficulty: <div id='difficulty'></div></li><li>Time: <div id='time spent'></div></li></ul></div>"
+	return "<div id="+course['id']+ " class='badge'> <h3><a href='#'>" + course['department'] + "  " + course['number'] + "<br/>" + course['name'] + "<br/>" + course['professor'] +"</a></h3><div><ul><li> professor: "+course['professor']+"</li></ul></div></div><br/>"
+}
+
+function makeCard(badge){
+    var course;
+    for (var i in courses){
+        var c = courses[i];       
+        if (c['id']==badge[0].id){
+            course=c;
+        }        
+    }
+    console.log(course);
 }
 
 /*what this would look like if javascript had block quotes instead of being a bitch.	
@@ -88,6 +101,7 @@ function courseHtml(course){
 		});
 	</script>
 	*/
+
 
 function incfComment(course, index){
 	course["comments"][index]["score"]++;
