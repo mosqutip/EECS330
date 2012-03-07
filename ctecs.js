@@ -86,23 +86,35 @@ function cardHtml(course){
     console.log(makeBars(course));
     return "<td valign='left'><div id="+
             course['id']+
-            " class='card'><ul class='course_header'><li>"+
-            course['department']+" - "+ course['number'] +"</li><li>"+
-            course['name']+"</li><li>"+ course['professor']+"</li></ul>"+
+            " class='card'><table class='card_head'><tr><td valign='top' class='course_header'>"+
+            course['department']+" "+ course['number'] +"<br/>"+
+            course['name']+"<br/>"+ course['professor']+"<br/></td><td valign='top'>"+
+            "<a style='color:#ffffff' href='#' OnCLick='minimizeCard("+course['id']+")'> &#8212&nbsp;</a>"+
+            "<a style='color:#ffffff' href='#' OnCLick='killCard("+course['id']+")'>&nbsp;X </a></td></tr></table>"+
             "<div>amount learned:<div class='amount_learned_bar' id='amount_learned_bar"+course['id']+"'></div></div>"+
             "<div>difficulty:<div class='difficulty_bar' id='difficulty_bar"+course['id']+"'></div></div>"+
             "<div>time spent:<div class='time_spent_bar' id='time_spent_bar"+course['id']+"'></div></div>"+
             makeBars(course)+"<br/>"+commentSection(course)+"</div></td>";
 }
 
+function killCard(id){
+    $("#"+id).remove();
+}
+
+function minimizeCard(id){
+    for (var i in courses){
+        var c = courses[i];
+        if (c['id']==id){
+            killCard(id);
+            $('#results').append(badgeHtml(c));
+            $('div.badge').unbind('click');            
+            $('div.badge').click(function(){makeCard($(this));});            
+            break;
+        }
+    }
+}
+
 function makeBars(course){
-/*		return	"<script type='text/javascript'>$( '.amount_learned_bar#"+course['id']+"').progressbar({value: "+
-        (16 * course['scores']['amount learned'])+ "});" +
-		"$( '.time_spent_bar#"+course['id']+"').progressbar({value: "+
-        (16 * course['scores']['time spent'])+ "});" +
-        "$( '.difficulty_bar#"+course['id']+"').progressbar({value: "+
-        (16 * course['scores']['difficulty'])+ "});</script>";
- */
 		return	"<script type='text/javascript'>$( '#amount_learned_bar"+course['id']+"').progressbar({value: "+
         (16 * course['scores']['amount learned'])+ "});" +
 		"$( '#time_spent_bar"+course['id']+"').progressbar({value: "+
