@@ -1,5 +1,5 @@
 //search function//last.fm metros are static. Instead ofloading new metros every time, just load with the script.
-var classes = [
+var courses = [
 {"name": "metaphysical dragon compilers",
 "department": "eecs", "number": "841", "professor": "Robby Findler",
     "scores": {"amount learned": 6, "difficulty": 6, "time spent": 6},
@@ -46,6 +46,12 @@ var classes = [
                 ]},
     ]
 
+function detectEnter(e){
+	if (e.keyCode == 13) {
+		search();
+        }
+}
+
 //basic search function for query box search
 function search() {
 	$('#results').empty();
@@ -55,13 +61,6 @@ function search() {
             if (courses[i]["name"] == query){
 		$('#results').append(courseHtml(courses[i]));
             };
-        }
-        //report no classes found here
-}
-
-function detectEnter(e){
-	if (e.keyCode == 13) {
-		search();
         }
 }
 
