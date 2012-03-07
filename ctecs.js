@@ -84,27 +84,9 @@ function searchCourses(query){
     return results;
 }
 
-
-
-
-
-
-
 function badgeHtml(course){
     return "<div id="+course['id']+" class='badge'><ul><li>"+course['department']+" "+ course['number'] +"</li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
-    /*what this would look like if javascript had block quotes instead of being a bitch.	
-	
-	
-	<h3><a href="#"> +COURSE NAME+ +COURSE DEPARTMENT+ "-" +COURSE NUMBER+ <input type="button" onclick="displaySlate('+course+')'+'"><img src="button file.jpg"></input></a></h3>
-	<div>
-		<ul>
-			<li>+COURSE PROFESSOR+</li>
-			<li>Learned: <div id='amount learned'></div></li>
-			<li>Difficulty: <div id='difficulty'></div></li>
-			<li>Time: <div id='time spent'></div></li>
-		</ul>
-	</div>
-*/
+
 }
 
 
