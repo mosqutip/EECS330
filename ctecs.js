@@ -43,6 +43,52 @@ var courses = [
                  {"text": "Jones seems more interested in funk than compilers.",
                  "score": 10}
                 ]},
+    
+{"id":4, "name": "Human-Computer Interactions", "department": "EECS", "number": "330", "professor": "Michael Horn",
+    "scores": {"amount learned": 5, "difficulty": 4, "time spent": 5},
+    "comments":[
+                {"text": "This class involves writing software for human beings to use",
+                 "score": 115},
+                 {"text": "Pretty good prof. Horn sings a lot?",
+                 "score": 81},
+                 {"text": "This class is really just an implementation of LISP.",
+                 "score": -10}
+                ]},
+    
+{"id":5, "name": "Programming Haskell", "department": "EECS", "number": "395", "professor": "Simon Peyton Jones",
+    "scores": {"amount learned": 4, "difficulty": 6, "time spent": 6},
+    "comments":[
+                {"text": "I don't see why they're whining, a monad is just a monoid in the category of endofunctors, what's the problem?",
+                 "score": 515},
+                 {"text": "Haskell's list comprehensions are cute.",
+                 "score": 1},
+                 {"text": "This language isn't c-like enough.",
+                 "score": 0}
+                ]},
+    
+{"id":6, "name": "Anthropology of Violence", "department": "ANTHRO", "number": "106", "professor": "Nick Murphy",
+    "scores": {"amount learned": 6, "difficulty": 2, "time spent": 3},
+    "comments":[
+                {"text": "I thought this class would be about '300'.  It was about the Holocaust. Disapointed.",
+                 "score": 72},
+                 {"text": "Murphy is awesome. He wears combat boots everywhere he goes.",
+                 "score": 13},
+                 {"text": "So depressing...",
+                 "score": 10}
+                ]},
+    
+{"id":7, "name": "Romanticism and Revolution", "department": "COMP_LIT", "number": "300", "professor": "Viv Soni",
+    "scores": {"amount learned": 6, "difficulty": 5, "time spent": 4},
+    "comments":[
+                {"text": "Throw off your petit-bourgeoisie shackles!",
+                 "score": 51},
+                 {"text": "Tiger Tiger burning bright, what the heck is Blake's poetry about?",
+                 "score": 38},
+                 {"text": "I think this class was about poems, maybe? So confused.",
+                 "score": 19}
+                ]},
+    
+
     ]
 
 function detectEnter(e){
