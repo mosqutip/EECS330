@@ -1,4 +1,3 @@
-//search function//last.fm metros are static. Instead ofloading new metros every time, just load with the script.
 var courses = [
 {"id":0, "name": "Metaphysical Dragon Compilers",
 "department": "EECS", "number": "841", "professor": "Robby Findler",
@@ -63,7 +62,6 @@ function search() {
     $('div.badge').click(function(){makeCard($(this));});
 }
 
-
 function searchCourses(query){
     var results=[];
     for (i in courses) {
@@ -85,23 +83,22 @@ function searchCourses(query){
 }
 
 function badgeHtml(course){
-    return "<div id="+course['id']+" class='badge'><ul><li>"+course['department']+" "+ course['number'] +"</li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
+    return "<div id="+course['id']+" class='badge'><ul><li><span style='font-weight:bold'>"+course['department']+" "+ course['number'] +"</span></li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
 
 }
-
 
 function cardHtml(course){
     console.log(makeBars(course));
     return "<td valign='left'><div id="+
             course['id']+
-            " class='card'><table class='card_head'><tr><td valign='top' class='course_header'>"+
-            course['department']+" "+ course['number'] +"<br/>"+
-            course['name']+"<br/>"+ course['professor']+"<br/></td><td valign='top'>"+
-            "<a style='color:#ffffff' href='#' OnCLick='minimizeCard("+course['id']+")'> &#8212&nbsp;</a>"+
-            "<a style='color:#ffffff' href='#' OnCLick='killCard("+course['id']+")'>&nbsp;X </a></td></tr></table>"+
-            "<div>amount learned:<div class='amount_learned_bar' id='amount_learned_bar"+course['id']+"'></div></div>"+
-            "<div>difficulty:<div class='difficulty_bar' id='difficulty_bar"+course['id']+"'></div></div>"+
-            "<div>time spent:<div class='time_spent_bar' id='time_spent_bar"+course['id']+"'></div></div>"+
+            " class='card'><table class='card_head'><tr><td valign='top' class='course_header'><h2>"+
+            course['department']+" "+ course['number'] +"</h2><h3>"+
+            course['name']+"</h3>"+ course['professor']+"<br/><br/></td><td valign='top'>"+
+            "<a style='color:#ffffff' href='#' onclick='minimizeCard("+course['id']+")'> &#8212&nbsp;</a>"+
+            "<a style='color:#ffffff' href='#' onclick='killCard("+course['id']+")'>&nbsp;X </a></td></tr></table>"+
+            "<div>Amount Learned:<div class='amount_learned_bar' id='amount_learned_bar"+course['id']+"'></div></div>"+
+            "<div>Difficulty:<div class='difficulty_bar' id='difficulty_bar"+course['id']+"'></div></div>"+
+            "<div>Time Spent:<div class='time_spent_bar' id='time_spent_bar"+course['id']+"'></div></div>"+
             makeBars(course)+"<br/>"+commentSection(course)+"</div></td>";
 }
 
@@ -134,7 +131,10 @@ function makeBars(course){
 function commentSection(course){
     var block = "<div class=comments><table>";
     for (var i in course['comments']){
-        addend = "<tr valgin='top'><td>"+course['comments'][i]['score']+"</td><td>"+course['comments'][i]['text']+"<td></tr>";
+        addend = "<tr valign='middle'><td align='center'><a href='#' onclick='incfComment("+course+","+i+")'><img src='uparrow.png' alt='Upvote'/><br/></a>"
+            +course['comments'][i]['score']
+            +"<br/><a href='#' onclick='decfComment(course, i)'><img src='downarrow.png' alt='Downvote'></a></td><td class='comments'>"
+            +course['comments'][i]['text']+"</td></tr>";
         block += addend;
     }
     block += "</table></div>";
