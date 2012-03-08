@@ -83,7 +83,9 @@ function searchCourses(query){
 }
 
 function badgeHtml(course){
-    return "<div id="+course['id']+" class='badge'><ul><li><span style='font-weight:bold'>"+course['department']+" "+ course['number'] +"</span></li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
+    return "<div id="+course['id']+
+    " class='badge'><ul><li><span style='font-weight:bold'>"+course['department']+" "+
+    course['number'] +"</span></li><li>"+course['name']+"</li><li>"+ course['professor']+"</li></ul></div>";
 
 }
 
@@ -112,8 +114,8 @@ function minimizeCard(id){
         if (c['id']==id){
             killCard(id);
             $('#results').append(badgeHtml(c));
-            $('div.badge').unbind('click');            
-            $('div.badge').click(function(){makeCard($(this));});            
+            $('div.badge').unbind('click');
+            $('div.badge').click(function(){makeCard($(this));});
             break;
         }
     }
@@ -131,9 +133,9 @@ function makeBars(course){
 function commentSection(course){
     var block = "<div class=comments><table>";
     for (var i in course['comments']){
-        addend = "<tr valign='middle'><td align='center'><a href='#' onclick='incfComment("+course+","+i+")'><img src='uparrow.png' alt='Upvote'/><br/></a>"
+        addend = "<tr valign='middle'><td align='center'><a href='#'><img class='uparrow' src='uparrow.png' alt='Upvote'/><br/></a>"
             +course['comments'][i]['score']
-            +"<br/><a href='#' onclick='decfComment(course, i)'><img src='downarrow.png' alt='Downvote'></a></td><td class='comments'>"
+            +"<br/><a href='#'><img class='downarrow' src='downarrow.png' alt='Downvote'></a></td><td class='comments'>"
             +course['comments'][i]['text']+"</td></tr>";
         block += addend;
     }
@@ -155,13 +157,11 @@ function makeCard(badge){
             $("#cards").append(cardHtml(course));
         }
     }
-    //assemble the html code for the course card
 }
 
-function incfComment(course, index){
-	course["comments"][index]["score"]++;
-}
-
-function decfComment(course, index){
-	course["comments"][index]["score"]--;	
-}
+/*
+            //make the fucking arrows work god damn it
+            $(".uparrow").unbind('click');
+            $(".downarrow").unbind('click');
+            $(".uparrow").click(function(){incfComment($(this));});
+            $(".downarrow").click(function(){decfComment($(this));});*/
