@@ -89,9 +89,9 @@ function badgeHtml(course){
 
 function cardHtml(course){
     console.log(makeBars(course));
-    return "<td valign='left'><div id="+
+    return "<td valign='top'><div id="+
             course['id']+
-            " class='card'><table class='card_head'><tr><td valign='top' class='course_header'><h2>"+
+            " class='card'><table class='card_head'><tr><td valign='left' class='course_header'><h2>"+
             course['department']+" "+ course['number'] +"</h2><h3>"+
             course['name']+"</h3>"+ course['professor']+"<br/><br/></td><td valign='top'>"+
             "<a style='color:#ffffff' href='#' onclick='minimizeCard("+course['id']+")'> &#8212&nbsp;</a>"+
