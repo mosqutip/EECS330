@@ -21,7 +21,7 @@ var courses = [
                  {"text": "This class taught me nothing!!!",
                  "score": -2}
                 ]},
-    
+
 {"id":2, "name": "Left-Handed Underwater Basket-Weaving", "department": "UWBW", "number": "385", "professor": "Morton Shapiro",
     "scores": {"amount learned": 5, "difficulty": 6, "time spent": 4},
     "comments":[
